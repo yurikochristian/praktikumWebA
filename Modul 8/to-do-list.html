@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="to-do-list.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>To-do List</h1>
+    <input  type="text" id="todo" />
+    <input type="button" value="Tambah" id="add" />
+    <ul id="todo-items"></ul>
+</body>
+<script>
+    $(function () {
+    function addItem () {
+      $("#todo-items").append('<li><span> <input type="checkbox" id="chck">' + $("#todo").val() + '</span> <small><a href="#edit">Edit</a> &bull; <a href="#delete">Delete</a></small></li>');
+      
+      $("input:checkbox").click(function () {
+        var $this = $(this);
+        if (this.checked) {
+            $this.parent().addClass('completed');
+        } else {
+            $this.parent().removeClass('completed');
+        }
+    });
+      $("#todo").val("");
+    }
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#todo-items li").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    $("#add").click(addItem);
+    
+    $(document).on("click", 'a[href="#edit"]', function () {
+      $(this).closest("li").find("span").prop("contenteditable", true).focus();
+      return false;
+    });
+    
+    $(document).on("click", 'a[href="#delete"]', function () {
+      $(this).closest("li").fadeOut(function () {
+        $(this).remove();
+      });
+      return false;
+    });
+  });
+</script>
+
+</html>

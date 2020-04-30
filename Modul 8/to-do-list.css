@@ -1,0 +1,19 @@
+* {
+    font-family: 'Tw Cen Mt'; 
+    list-style: none;
+    text-decoration: none;
+}
+input, li {
+    padding: 3px;
+}
+.completed {
+    text-decoration: line-through;
+}
+#todo-items small {
+    display: inline-block; 
+    padding: 2px; 
+    vertical-align: bottom;
+}
+#todo-items span:focus {
+    background-color: #ccf;
+}
