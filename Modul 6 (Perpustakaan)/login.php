@@ -40,6 +40,7 @@ if(isset($_POST['login']))
                     <input type="password" id="pass" name="password" placeholder="Password">
                     <button id="submit" type="submit" name="login" class="signupbtn">Sign In</button>
                 </form>
+                <p>Email dan password akun dapat dilihat pada readme repository github</p>
             </center>
         </div>
         <div id="clear"></div>
