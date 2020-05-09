@@ -25,36 +25,13 @@ if(isset($_POST['filter'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri</title>
+    <?php include "style.php"; ?>
     <link rel="stylesheet" href="css/galeri.css">
 </head>
 
 <body>
     <div id="main-content">
-        <div id="atas"> 
-            <img src="gambar/perpustakaan.jpg" alt="" style="height: 250px; width: 700px;">
-            <p style="color: white; font-weight: bolder;">PERPUSTAKAAN ILMU KOMPUTER</p>
-        </div>
-        <div id="sidebar">
-            <img src="gambar/himakom.png" alt="" style="height: auto; width: 240px;">
-            <div class="populer">
-                <p>Artikel Populer</p>
-            </div>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="galeri.html">GALERI</a></li>
-                <li><a href="tentang.html">TENTANG</a></li>
-                <li><a href="kontak.html">KONTAK</a></li>
-            </ul>
-
-        </div>
-        <div id="menu">
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="galeri.html">GALERI</a></li>
-                <li><a href="tentang.html">TENTANG</a></li>
-                <li><a href="kontak.html">KONTAK</a></li>
-            </ul>
-        </div>
+        <?php include 'header-sidebar.php';?>
         <div id="isi">
             <h1>Data Buku</h1>
             <form action="galeri.php" method="post">
