@@ -7,14 +7,15 @@ if(isset($_SESSION['is_login']))
     header('location:index.php');
 }
 
-if(isset($_POST['login']))
+if(isset($_POST['daftar']))
 {
+    $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
     
-    if($database->login($email,$password))
+    if($database->register($name, $email, $password))
     {
-      header('location:index.php');
+        header('location:index.php');
     }
 }
 ?>
@@ -34,13 +35,14 @@ if(isset($_POST['login']))
         <?php include 'header-sidebar.php';?>
         <div id="isi">
             <center>
-                <h1>Login</h1>
-                <form method="post" action="" name="login">
+                <h1>Daftar</h1>
+                <form method="post" action="" name="daftar">
+                    <input type="text" id="name" name="name" placeholder="Nama">
                     <input type="text" id="email" name="email" placeholder="E-Mail">
                     <input type="password" id="pass" name="password" placeholder="Password">
-                    <button id="submit" type="submit" name="login" class="signupbtn">Sign In</button>
+                    <button id="submit" type="submit" name="daftar" class="signupbtn">Daftar</button>
                 </form>
-                <p>Belum punya akun? <a href="daftar.php">Daftar</a></p>
+                <p>Sudah punya akun? <a href="login.php">Masuk</a></p>
             </center>
         </div>
         <div id="clear"></div>

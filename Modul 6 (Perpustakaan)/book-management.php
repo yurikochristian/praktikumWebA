@@ -1,4 +1,10 @@
 <?php
+session_start();
+if($_SESSION['role'] != 'admin'){
+    header('location:login.php');
+}
+?>
+<?php
 include_once('db-con.php');
 $database = new database();
 $query="select * from buku";
@@ -42,6 +48,7 @@ if(isset($_POST['filter'])){
         <?php include 'header-sidebar.php';?>
         <div id="isi">
             <h1>Data Buku</h1>
+            <button data-target="#create" data-toggle="modal" class="btn btn-primary btn-lg btn-block">Input Buku Baru</button><br>
             <form action="galeri.php" method="post">
                 <input type="text" placeholder="Search Keyword.." name="katakunci" id="mySearch">
                 <select style="width: 150px;height: 47px;border:solid 1px lightgrey;margin-top:-25px;" name="option">
@@ -71,7 +78,7 @@ if(isset($_POST['filter'])){
             <?php
                 $result = mysqli_query($database->koneksi, $query);
                 while($books = mysqli_fetch_assoc($result)){
-                    require "galeri-list.php";
+                    require "bm-list.php";
                 } 
             ?>
             </table>
@@ -80,9 +87,12 @@ if(isset($_POST['filter'])){
         <div id="clear"></div>
     </div>
     <?php
+        require "create-book.php";
+    ?>
+    <?php
         $result = mysqli_query($database->koneksi, $query);
         while($books = mysqli_fetch_assoc($result)){
-            require "galeri-list-modal.php";
+            require "bm-list-modal.php";
         }
     ?>
 </body>

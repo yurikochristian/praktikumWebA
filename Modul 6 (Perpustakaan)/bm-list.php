@@ -13,7 +13,8 @@ echo "<tr>
             <h5>".$books['judul']."</h5>
             <p>by ".$books['penulis']."</p>
             <p>Kategori : ".$books['kategori']."</p>
-            <a><button class=\"button\" data-toggle=\"modal\" data-target=\"#modal".$books['id_buku']."\">Detail...</button></a>
+            <a><button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#modal".$books['id_buku']."\">Edit</button></a>
+            <a href=\"hapus-buku.php?id_buku=".$books['id_buku']."\"><button class=\"btn btn-danger\">Hapus</button></a>
         </div>
     </td>
 </tr>";

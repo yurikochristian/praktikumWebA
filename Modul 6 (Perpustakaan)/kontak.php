@@ -1,3 +1,11 @@
+<?php
+session_start();
+include_once('db-con.php');
+$database = new database();
+$query = 'SELECT * FROM user WHERE id_user='.$_SESSION['id'].';';
+$user = mysqli_query($database->koneksi,$query);
+$user = $user->fetch_array();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,12 +22,18 @@
         <?php include 'header-sidebar.php';?>
         <div id="isi">
             <center>
-                <h1 style="text-align: center;">Author Web</h1>
-                <img src="gambar/yuriko.jpg" alt="" style="height: 150px; width: 100px; display: block; margin: auto;">
-                <br>
-                <h2>Yuriko Christian</h3>
-                <p>yuriko@gmail.com</p>
-                <p>081-555-239450</p>
+                <h1 style="text-align: center;"><?php echo $user['user_name']?></h1>
+                <img src="gambar/<?php echo $user['picture'];?>" alt="Profile Picture" style="height: 150px; display: block; margin: auto;"><br>
+                <form action="foto-profil.php" method="post" enctype="multipart/form-data" style="border:solid #29aae3 1px; padding: 20px;width: 60%;">
+                    Foto profil: <input type="file" name="profil_pic"/>
+                    <input class="btn btn-primary" type="submit" name="upload" value="Upload"/><br><br>
+                </form>
+                <form action="edit-profil.php" method="post">
+                    <br>
+                    Nama: <input type="text" value="" name="nama" placeholder="<?php echo $user['user_name']?>"><br><br>
+                    Email: <input type="email" value="" name="email" placeholder="<?php echo $user['email']?>"><br><br>
+                    <input class="btn btn-primary" type="submit" name="simpan" value="Simpan"/>
+                </form>
             </center>
         </div>
         <div id="clear"></div>
